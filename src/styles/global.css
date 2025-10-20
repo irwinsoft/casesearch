@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-court-gray-50 text-court-gray-800 font-sans;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-block px-6 py-3 bg-court-blue-600 text-white font-medium rounded-md hover:bg-court-blue-700 transition-colors duration-200 text-center;
+  }
+  
+  .btn-secondary {
+    @apply inline-block px-6 py-3 bg-white text-court-blue-600 font-medium rounded-md border-2 border-court-blue-600 hover:bg-court-blue-50 transition-colors duration-200 text-center;
+  }
+  
+  .card {
+    @apply bg-white rounded-lg shadow-md p-6;
+  }
+  
+  .case-table {
+    @apply min-w-full divide-y divide-court-gray-200;
+  }
+  
+  .case-table th {
+    @apply px-6 py-3 bg-court-gray-100 text-left text-xs font-medium text-court-gray-700 uppercase tracking-wider;
+  }
+  
+  .case-table td {
+    @apply px-6 py-4 whitespace-normal text-sm text-court-gray-900;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    @apply bg-white;
+  }
+  
+  .card {
+    @apply shadow-none border border-court-gray-300;
+  }
+  
+  a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+}
+

@@ -1,0 +1,28 @@
+---
+export interface Props {
+  rows: Array<{
+    label: string;
+    value: string;
+  }>;
+}
+
+const { rows } = Astro.props;
+---
+
+<div class="overflow-x-auto">
+  <table class="case-table">
+    <tbody class="bg-white divide-y divide-court-gray-200">
+      {rows.map(row => (
+        <tr>
+          <td class="px-6 py-4 font-medium text-court-gray-700 bg-court-gray-50 w-1/3">
+            {row.label}
+          </td>
+          <td class="px-6 py-4 text-court-gray-900">
+            {row.value}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+

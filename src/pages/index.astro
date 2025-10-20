@@ -1,0 +1,148 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import DisclaimerFooter from '../components/DisclaimerFooter.astro';
+import caseData from '../data/caseData.json';
+
+const { fullName, businessName } = caseData.defendant;
+const title = `Public Court Records for ${fullName}`;
+const description = `Publicly available Maryland court records and case information for ${fullName}${businessName ? ` and ${businessName}` : ''}. View case details, filing information, and court documents.`;
+---
+
+<Layout title={title} description={description}>
+  <div class="min-h-screen flex flex-col">
+    <Header />
+    
+    <main class="flex-grow">
+      <!-- Hero Section -->
+      <section class="bg-gradient-to-b from-court-gray-50 to-white py-16 sm:py-24">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center">
+            <h1 class="text-4xl sm:text-5xl font-serif font-bold text-court-gray-900 mb-6">
+              Public Court Records for<br/>
+              <span class="text-court-blue-600">{fullName}</span>
+            </h1>
+            {businessName && (
+              <p class="text-lg text-court-gray-600 mb-4">
+                Associated Business: {businessName}
+              </p>
+            )}
+            <p class="text-xl text-court-gray-600 mb-8 max-w-3xl mx-auto">
+              This website displays publicly available court records from the Maryland Judiciary Case Search system. 
+              All information is sourced from official government records.
+            </p>
+            <div class="inline-flex items-center px-4 py-2 bg-court-gray-100 rounded-md text-sm text-court-gray-700 mb-12">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              No commentary or opinion - factual records only
+            </div>
+          </div>
+          
+          <!-- Call to Action Cards -->
+          <div class="grid md:grid-cols-2 gap-8 mt-12">
+            <!-- Maryland Judiciary Case Search Results Card -->
+            <div class="card hover:shadow-lg transition-shadow duration-200">
+              <div class="flex flex-col h-full">
+                <div class="flex-grow">
+                  <div class="flex items-center mb-4">
+                    <svg class="w-8 h-8 text-court-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <h2 class="text-2xl font-serif font-bold text-court-gray-900">Maryland Judiciary Case Search Results</h2>
+                  </div>
+                  <p class="text-court-gray-600 mb-4">
+                    View complete case search results from the Maryland Judiciary system, including all court cases, 
+                    filing dates, case types, and current status information.
+                  </p>
+                  <ul class="space-y-2 mb-6 text-sm text-court-gray-600">
+                    <li class="flex items-start">
+                      <span class="text-court-blue-600 mr-2">•</span>
+                      Total Cases: {caseData.marylandCaseSearchResults.length}
+                    </li>
+                    <li class="flex items-start">
+                      <span class="text-court-blue-600 mr-2">•</span>
+                      Open Cases: {caseData.marylandCaseSearchResults.filter(c => c.caseStatus.includes('Open')).length}
+                    </li>
+                    <li class="flex items-start">
+                      <span class="text-court-blue-600 mr-2">•</span>
+                      Date Range: {caseData.marylandCaseSearchResults[caseData.marylandCaseSearchResults.length - 1].filingDate} - {caseData.marylandCaseSearchResults[0].filingDate}
+                    </li>
+                  </ul>
+                </div>
+                <a href="/case-record" class="btn-primary">
+                  View All Case Records
+                </a>
+              </div>
+            </div>
+            
+            <!-- Small Claims Card -->
+            <div class="card hover:shadow-lg transition-shadow duration-200">
+              <div class="flex flex-col h-full">
+                <div class="flex-grow">
+                  <div class="flex items-center mb-4">
+                    <svg class="w-8 h-8 text-court-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                    <h2 class="text-2xl font-serif font-bold text-court-gray-900">Small Claims Suit</h2>
+                  </div>
+                  <p class="text-court-gray-600 mb-4">
+                    Access the complete small claims complaint document, including case details, 
+                    allegations, and amounts claimed.
+                  </p>
+                  <ul class="space-y-2 mb-6 text-sm text-court-gray-600">
+                    <li class="flex items-start">
+                      <span class="text-court-blue-600 mr-2">•</span>
+                      Case Number: {caseData.smallClaimsSuit.caseNumber}
+                    </li>
+                    <li class="flex items-start">
+                      <span class="text-court-blue-600 mr-2">•</span>
+                      Filed: {caseData.smallClaimsSuit.filingDate}
+                    </li>
+                    <li class="flex items-start">
+                      <span class="text-court-blue-600 mr-2">•</span>
+                      Type: {caseData.smallClaimsSuit.description}
+                    </li>
+                  </ul>
+                </div>
+                <a href="/small-claims" class="btn-primary">
+                  View Small Claims Document
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Source Information -->
+      <section class="py-12 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="card bg-court-blue-50 border border-court-blue-200">
+            <h3 class="text-lg font-serif font-semibold text-court-gray-900 mb-3">Data Source</h3>
+            <p class="text-court-gray-700 mb-4">
+              All case information presented on this website is obtained from public records available through the 
+              Maryland Judiciary Case Search system. These records are maintained by the Maryland State Judiciary 
+              and are available to the general public.
+            </p>
+            <a 
+              href={caseData.sourceLinks.marylandJudiciarySearch} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-flex items-center text-court-blue-600 hover:text-court-blue-800 font-medium"
+            >
+              Visit Maryland Judiciary Case Search
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+    
+    <DisclaimerFooter />
+    <Footer />
+  </div>
+</Layout>
+

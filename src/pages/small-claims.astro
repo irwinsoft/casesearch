@@ -1,0 +1,150 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import DisclaimerFooter from '../components/DisclaimerFooter.astro';
+import CaseInfoTable from '../components/CaseInfoTable.astro';
+import caseData from '../data/caseData.json';
+
+const { smallClaimsSuit, defendant } = caseData;
+const title = `Small Claims Suit - ${smallClaimsSuit.caseNumber} - ${defendant.fullName}`;
+const description = `Small claims court case ${smallClaimsSuit.caseNumber}: ${smallClaimsSuit.plaintiff} v. ${smallClaimsSuit.defendant}. View complete case documents and filing information.`;
+
+const caseInfoRows = [
+  { label: 'Case Number', value: smallClaimsSuit.caseNumber },
+  { label: 'Court', value: smallClaimsSuit.court },
+  { label: 'Filing Date', value: smallClaimsSuit.filingDate },
+  { label: 'Plaintiff', value: smallClaimsSuit.plaintiff },
+  { label: 'Defendant', value: smallClaimsSuit.defendant },
+  { label: 'Amount Claimed', value: smallClaimsSuit.amount },
+  { label: 'Description', value: smallClaimsSuit.description },
+];
+---
+
+<Layout title={title} description={description}>
+  <div class="min-h-screen flex flex-col">
+    <Header />
+    
+    <main class="flex-grow py-12">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Breadcrumb -->
+        <nav class="mb-8 no-print" aria-label="Breadcrumb">
+          <ol class="flex items-center space-x-2 text-sm text-court-gray-600">
+            <li><a href="/" class="hover:text-court-blue-600">Home</a></li>
+            <li><span class="mx-2">/</span></li>
+            <li class="text-court-gray-900 font-medium">Small Claims Suit</li>
+          </ol>
+        </nav>
+        
+        <!-- Case Header -->
+        <div class="mb-8">
+          <h1 class="text-4xl font-serif font-bold text-court-gray-900 mb-2">
+            Small Claims Court Document
+          </h1>
+          <p class="text-xl text-court-gray-600">
+            {smallClaimsSuit.plaintiff} v. {smallClaimsSuit.defendant}
+          </p>
+          <p class="text-lg text-court-gray-500 mt-2">
+            Case No. {smallClaimsSuit.caseNumber}
+          </p>
+        </div>
+        
+        <!-- Case Information Card -->
+        <section class="mb-12">
+          <div class="card">
+            <h2 class="text-2xl font-serif font-bold text-court-gray-900 mb-6">Case Information</h2>
+            <CaseInfoTable rows={caseInfoRows} />
+          </div>
+        </section>
+        
+        <!-- PDF Viewer Section -->
+        <section class="mb-12">
+          <div class="card">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+              <h2 class="text-2xl font-serif font-bold text-court-gray-900">Court Document</h2>
+              <a 
+                href={smallClaimsSuit.pdfPath} 
+                download
+                class="inline-flex items-center px-4 py-2 bg-court-blue-600 text-white font-medium rounded-md hover:bg-court-blue-700 transition-colors text-sm"
+              >
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Download PDF
+              </a>
+            </div>
+            
+            <!-- PDF Viewer with fallback -->
+            <div class="bg-court-gray-100 rounded-lg overflow-hidden" style="min-height: 600px;">
+              <object 
+                data={smallClaimsSuit.pdfPath} 
+                type="application/pdf" 
+                class="w-full h-full"
+                style="min-height: 800px;"
+              >
+                <div class="flex flex-col items-center justify-center p-12 text-center">
+                  <svg class="w-24 h-24 text-court-gray-400 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  </svg>
+                  <h3 class="text-xl font-serif font-bold text-court-gray-900 mb-3">
+                    PDF Viewer Not Available
+                  </h3>
+                  <p class="text-court-gray-600 mb-6 max-w-md">
+                    Your browser doesn't support embedded PDF viewing. Please download the document to view it.
+                  </p>
+                  <a 
+                    href={smallClaimsSuit.pdfPath} 
+                    download
+                    class="btn-primary"
+                  >
+                    Download Document
+                  </a>
+                </div>
+              </object>
+            </div>
+            
+            <p class="text-sm text-court-gray-600 mt-4">
+              Note: If the PDF does not display above, please use the download button to view the document on your device.
+            </p>
+          </div>
+        </section>
+        
+        <!-- Source Citation -->
+        <section class="mb-8">
+          <div class="card bg-court-gray-50">
+            <h3 class="text-lg font-serif font-semibold text-court-gray-900 mb-3">Document Source</h3>
+            <p class="text-court-gray-700 mb-4">
+              This document is a public court record filed with the {smallClaimsSuit.court}. 
+              Court documents are public records and accessible through the court's record system.
+            </p>
+            <a 
+              href={caseData.sourceLinks.marylandJudiciarySearch} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-flex items-center text-court-blue-600 hover:text-court-blue-800 font-medium"
+            >
+              Search Maryland Judiciary Case Records
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </div>
+        </section>
+        
+        <!-- Navigation Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 no-print">
+          <a href="/" class="btn-secondary">
+            ← Back to Home
+          </a>
+          <a href="/case-record" class="btn-primary">
+            View Maryland Case Record →
+          </a>
+        </div>
+      </div>
+    </main>
+    
+    <DisclaimerFooter />
+    <Footer />
+  </div>
+</Layout>
+

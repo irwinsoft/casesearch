@@ -1,0 +1,333 @@
+{
+  "defendant": {
+    "fullName": "Peter Paglia",
+    "displayName": "Peter Paglia",
+    "businessName": "Atlantic Woodworks, L.L.C."
+  },
+  "marylandCaseSearchResults": [
+    {
+      "caseNumber": "C02JG25020702",
+      "name": "Atlantic Woodworks, L.l.c.",
+      "partyType": "Defendant",
+      "court": "Anne Arundel County Circuit Court",
+      "caseType": "Judgment - District Court Lien",
+      "caseStatus": "Closed",
+      "filingDate": "9/29/25",
+      "caseCaption": "Anne Arundel County Maryland, a body corporate and politic vs. Atlantic Woodworks, L.L.C."
+    },
+    {
+      "caseNumber": "D07CV25021897",
+      "name": "Paglia, Peter",
+      "partyType": "Other",
+      "court": "Glen Burnie District Court",
+      "caseType": "Contract - Small Claims",
+      "caseStatus": "Open",
+      "filingDate": "9/22/25",
+      "caseCaption": "JAMES ASTRACHAN vs. ATLANTIC WOODWORKS"
+    },
+    {
+      "caseNumber": "D07CV25012410",
+      "name": "Paglia, Peter",
+      "partyType": "Other",
+      "court": "Glen Burnie District Court",
+      "caseType": "Contract - Small Claims",
+      "caseStatus": "Open / Judgment",
+      "filingDate": "4/9/25",
+      "caseCaption": "Anne Arundel County Maryland, a body corporate and politic vs. Atlantic Woodworks, L.L.C."
+    },
+    {
+      "caseNumber": "C02FM24003575",
+      "name": "Paglia, Peter",
+      "partyType": "Defendant",
+      "court": "Anne Arundel County Circuit Court",
+      "caseType": "Divorce - Absolute",
+      "caseStatus": "Closed",
+      "filingDate": "10/1/24",
+      "caseCaption": "Ludia Sarmast vs. Peter Paglia"
+    },
+    {
+      "caseNumber": "D07CV24018320",
+      "name": "Paglia, Peter",
+      "partyType": "Defendant",
+      "court": "Glen Burnie District Court",
+      "caseType": "Contract - Large Claims",
+      "caseStatus": "Open",
+      "filingDate": "8/30/24",
+      "caseCaption": "AMERICAN EXPRESS NATIONAL BANK vs. PETER PAGLIA"
+    },
+    {
+      "caseNumber": "D07CV20014748",
+      "name": "Paglia, Peter",
+      "partyType": "Defendant",
+      "court": "Glen Burnie District Court",
+      "caseType": "Municipal Infraction",
+      "caseStatus": "Closed",
+      "filingDate": "9/16/20",
+      "caseCaption": "Anne Arundel Co. Md. vs. Peter Paglia"
+    },
+    {
+      "caseNumber": "D07CV18008014",
+      "name": "Paglia, Peter",
+      "partyType": "Other",
+      "court": "Glen Burnie District Court",
+      "caseType": "Contract - Small Claims",
+      "caseStatus": "Closed",
+      "filingDate": "6/27/18",
+      "caseCaption": "Anne Arundel County, Maryland, a body corporate and politic vs. Atlantic Woodworks, L.L.C."
+    },
+    {
+      "caseNumber": "070200003292014",
+      "name": "Paglia, Peter",
+      "partyType": "Defendant",
+      "court": "Glen Burnie District Court",
+      "caseType": "Contract",
+      "caseStatus": "Closed",
+      "filingDate": "1/6/14",
+      "caseCaption": "ANNE ARUNDEL COUNTY,MD vs  ALANTIC WOODWORKS,INC et al"
+    },
+    {
+      "caseNumber": "130426R",
+      "name": "Atlantic Woodworks Inc",
+      "partyType": "Defendant",
+      "court": "Montgomery County Circuit Court",
+      "caseType": "Judgment - District Court Lien",
+      "caseStatus": "Closed",
+      "filingDate": "8/27/12",
+      "caseCaption": "SANDY SPRING BANK vs. ATLANTIC WOODWORKS INC"
+    },
+    {
+      "caseNumber": "060100062832012",
+      "name": "Paglia, Peter C",
+      "partyType": "Other",
+      "court": "Rockville District Court",
+      "caseType": "Contract",
+      "caseStatus": "Closed",
+      "filingDate": "3/29/12",
+      "caseCaption": "SANDY SPRING BANK vs ATLANTIC WOODWORKS, INC."
+    },
+    {
+      "caseNumber": "070200023902011",
+      "name": "Paglia, Peter C",
+      "partyType": "Defendant",
+      "court": "Glen Burnie District Court",
+      "caseType": "Contract",
+      "caseStatus": "Closed",
+      "filingDate": "3/15/11",
+      "caseCaption": "DISCOVER BANK vs PAGLIA, PETER C"
+    },
+    {
+      "caseNumber": "02C10151589",
+      "name": "Paglia, Peter C",
+      "partyType": "Defendant",
+      "court": "Anne Arundel County Circuit Court",
+      "caseType": "Foreclosure",
+      "caseStatus": "Closed / Inactive",
+      "filingDate": "4/28/10",
+      "caseCaption": "Edward S Cohn, et al vs Peter C Paglia, et al"
+    },
+    {
+      "caseNumber": "070200148402009",
+      "name": "Paglia, Peter Carl",
+      "partyType": "Defendant",
+      "court": "Glen Burnie District Court",
+      "caseType": "Contract",
+      "caseStatus": "Closed",
+      "filingDate": "10/8/09",
+      "caseCaption": "WURTH WOOD GROUP, INC. vs  ATLANTIC WOODWORKERS, INC. et al"
+    },
+    {
+      "caseNumber": "070200122402009",
+      "name": "Paglia, Peter Carl",
+      "partyType": "Other",
+      "court": "Glen Burnie District Court",
+      "caseType": "Contract",
+      "caseStatus": "Closed",
+      "filingDate": "8/19/09",
+      "caseCaption": "IN HOME STONE MARBLE & GRANITE INC vs ATLANTIC WOODWORKS INC"
+    },
+    {
+      "caseNumber": "02C09140705",
+      "name": "Paglia, Peter",
+      "partyType": "Defendant",
+      "court": "Anne Arundel County Circuit Court",
+      "caseType": "Mechanics Liens",
+      "caseStatus": "Closed / Inactive",
+      "filingDate": "4/28/09",
+      "caseCaption": "Atlantic Woodworks Inc vs John M Schaffer, et al"
+    },
+    {
+      "caseNumber": "0Z33850537",
+      "name": "Paglia, Peter",
+      "partyType": "Defendant",
+      "court": "Annapolis District Court",
+      "caseType": "Citation - Municipal Infraction",
+      "caseStatus": "Closed",
+      "filingDate": "1/12/05",
+      "caseCaption": ""
+    },
+    {
+      "caseNumber": "02C03088221",
+      "name": "Paglia, Peter",
+      "partyType": "Plaintiff",
+      "court": "Anne Arundel County Circuit Court",
+      "caseType": "DN",
+      "caseStatus": "Closed / Inactive",
+      "filingDate": "4/1/03",
+      "caseCaption": "PETER PAGLIA, et al vs FAMILY KITCHENS, et al"
+    },
+    {
+      "caseNumber": "070200009302003",
+      "name": "Atlantic Woodworks",
+      "partyType": "Plaintiff",
+      "court": "Glen Burnie District Court",
+      "caseType": "Contract",
+      "caseStatus": "Closed",
+      "filingDate": "2/25/03",
+      "caseCaption": "ATLANTIC WOODWORKS vs UPS C/O THE CORPORATION TRUST INC"
+    },
+    {
+      "caseNumber": "02L98006527",
+      "name": "Paglia, Peter C",
+      "partyType": "Defendant",
+      "court": "Anne Arundel County Circuit Court",
+      "caseType": "Lien",
+      "caseStatus": "Closed",
+      "filingDate": "7/24/98",
+      "caseCaption": "STATE OF MD DEPT LABOR LICENSING & REGULATIO vs. PETER C PAGLIA"
+    },
+    {
+      "caseNumber": "02L96008519",
+      "name": "Paglia, Peter",
+      "partyType": "Defendant",
+      "court": "Anne Arundel County Circuit Court",
+      "caseType": "Lien",
+      "caseStatus": "Closed",
+      "filingDate": "10/4/96",
+      "caseCaption": "CHIROPLUS OF CROFTON vs. PETER PAGLIA"
+    },
+    {
+      "caseNumber": "02L95010469",
+      "name": "Paglia, Peter",
+      "partyType": "Defendant",
+      "court": "Anne Arundel County Circuit Court",
+      "caseType": "Lien",
+      "caseStatus": "Closed",
+      "filingDate": "12/4/95",
+      "caseCaption": "CHIROPLUS OF CROFTON vs. PETER PAGLIA"
+    },
+    {
+      "caseNumber": "070200060831995",
+      "name": "Paglia, Peter",
+      "partyType": "Defendant",
+      "court": "Glen Burnie District Court",
+      "caseType": "Contract",
+      "caseStatus": "Closed",
+      "filingDate": "5/19/95",
+      "caseCaption": "CHIROPLUS OF CROFTON vs PAGLIA, PETER"
+    },
+    {
+      "caseNumber": "070200031541995",
+      "name": "Paglia, Peter C",
+      "partyType": "Defendant",
+      "court": "Glen Burnie District Court",
+      "caseType": "Contract",
+      "caseStatus": "Closed",
+      "filingDate": "4/6/95",
+      "caseCaption": "ALLIED PLYWOOD CORP. vs PAGLIA, PETER C"
+    },
+    {
+      "caseNumber": "070200039381995",
+      "name": "Paglia, Peter",
+      "partyType": "Defendant",
+      "court": "Glen Burnie District Court",
+      "caseType": "Contract",
+      "caseStatus": "Closed",
+      "filingDate": "3/29/95",
+      "caseCaption": "CARAPACE CORPORATION vs PAGLIA, PETER"
+    },
+    {
+      "caseNumber": "02L93004102",
+      "name": "Paglia, Peter C",
+      "partyType": "Defendant",
+      "court": "Anne Arundel County Circuit Court",
+      "caseType": "Lien",
+      "caseStatus": "Closed",
+      "filingDate": "6/16/93",
+      "caseCaption": "STATE OF MD COMPTROLLER OF THE TREASURY vs. PETER C PAGLIA"
+    },
+    {
+      "caseNumber": "02C92007553",
+      "name": "Paglia, Peter Carl",
+      "partyType": "Defendant",
+      "court": "Anne Arundel County Circuit Court",
+      "caseType": "Divorce - Absolute",
+      "caseStatus": "Closed / Inactive",
+      "filingDate": "6/26/92",
+      "caseCaption": "NANCY REGINA PAGLIA vs PETER CARL PAGLIA"
+    },
+    {
+      "caseNumber": "070200009001991",
+      "name": "Paglia, Peter",
+      "partyType": "Defendant",
+      "court": "Glen Burnie District Court",
+      "caseType": "Contract",
+      "caseStatus": "Closed",
+      "filingDate": "1/23/91",
+      "caseCaption": "SIEMON, DEREK A vs PAGLIA, PETER"
+    },
+    {
+      "caseNumber": "070200080251990",
+      "name": "Paglia, Peter C",
+      "partyType": "Defendant",
+      "court": "Glen Burnie District Court",
+      "caseType": "Converted from old system",
+      "caseStatus": "Closed",
+      "filingDate": "7/25/90",
+      "caseCaption": "HARRIS, ROGER C MD & ASSOC vs PAGLIA, PETER C"
+    },
+    {
+      "caseNumber": "070200016971990",
+      "name": "Paglia, Peter",
+      "partyType": "Defendant",
+      "court": "Glen Burnie District Court",
+      "caseType": "Converted from old system",
+      "caseStatus": "Closed",
+      "filingDate": "2/8/90",
+      "caseCaption": "C & P TELEPHONE CO OF MD vs PAGLIA, PETER"
+    },
+    {
+      "caseNumber": "070200129741989",
+      "name": "Paglia, Peter C",
+      "partyType": "Defendant",
+      "court": "Glen Burnie District Court",
+      "caseType": "Converted from old system",
+      "caseStatus": "Closed",
+      "filingDate": "11/22/89",
+      "caseCaption": "MILZMAN, JOSEPH B DR vs PAGLIA, PETER C"
+    },
+    {
+      "caseNumber": "070200075481989",
+      "name": "Atlantic Woodworks",
+      "partyType": "Defendant",
+      "court": "Glen Burnie District Court",
+      "caseType": "Converted from old system",
+      "caseStatus": "Closed",
+      "filingDate": "7/19/89",
+      "caseCaption": "SEQUOIA SUPPLY vs  ATLANTIC WOODWORKS et al"
+    }
+  ],
+  "smallClaimsSuit": {
+    "caseNumber": "D07CV25021897",
+    "court": "Glen Burnie District Court",
+    "plaintiff": "JAMES ASTRACHAN",
+    "defendant": "ATLANTIC WOODWORKS",
+    "amount": "$4,300.00",
+    "filingDate": "9/22/25",
+    "description": "Contract - Small Claims",
+    "pdfPath": "/documents/small-claims-complaint.pdf"
+  },
+  "sourceLinks": {
+    "marylandJudiciarySearch": "https://casesearch.courts.state.md.us/casesearch/",
+    "disclaimer": "All information displayed on this website is sourced from publicly available court records. This site does not provide legal advice, opinions, or commentary. For official records, please visit the Maryland Judiciary Case Search website."
+  }
+}

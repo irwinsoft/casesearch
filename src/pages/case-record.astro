@@ -1,0 +1,211 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import DisclaimerFooter from '../components/DisclaimerFooter.astro';
+import caseData from '../data/caseData.json';
+
+const { marylandCaseSearchResults, defendant } = caseData;
+const title = `Maryland Judiciary Case Search Results - ${defendant.fullName}`;
+const description = `Complete Maryland Judiciary Case Search results for ${defendant.fullName} and ${defendant.businessName}. View all court cases, filing dates, and case statuses.`;
+---
+
+<Layout title={title} description={description}>
+  <div class="min-h-screen flex flex-col">
+    <Header />
+    
+    <main class="flex-grow py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Breadcrumb -->
+        <nav class="mb-8 no-print" aria-label="Breadcrumb">
+          <ol class="flex items-center space-x-2 text-sm text-court-gray-600">
+            <li><a href="/" class="hover:text-court-blue-600">Home</a></li>
+            <li><span class="mx-2">/</span></li>
+            <li class="text-court-gray-900 font-medium">Maryland Judiciary Case Search Results</li>
+          </ol>
+        </nav>
+        
+        <!-- Page Header -->
+        <div class="mb-8">
+          <h1 class="text-4xl font-serif font-bold text-court-gray-900 mb-2">
+            Maryland Judiciary Case Search Results
+          </h1>
+          <p class="text-xl text-court-gray-600">
+            {defendant.fullName}
+          </p>
+          {defendant.businessName && (
+            <p class="text-lg text-court-gray-500 mt-1">
+              Associated Business: {defendant.businessName}
+            </p>
+          )}
+        </div>
+        
+        <!-- Summary Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div class="card bg-court-blue-50 border border-court-blue-200">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-court-blue-600 mb-2">
+                {marylandCaseSearchResults.length}
+              </div>
+              <div class="text-sm text-court-gray-700 font-medium">
+                Total Cases
+              </div>
+            </div>
+          </div>
+          <div class="card bg-court-gray-50 border border-court-gray-300">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-court-gray-800 mb-2">
+                {marylandCaseSearchResults.filter(c => c.caseStatus.includes('Open')).length}
+              </div>
+              <div class="text-sm text-court-gray-700 font-medium">
+                Open Cases
+              </div>
+            </div>
+          </div>
+          <div class="card bg-court-gray-50 border border-court-gray-300">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-court-gray-800 mb-2">
+                {marylandCaseSearchResults.filter(c => c.caseStatus.includes('Closed')).length}
+              </div>
+              <div class="text-sm text-court-gray-700 font-medium">
+                Closed Cases
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Case Results Table -->
+        <section class="mb-12">
+          <div class="card">
+            <div class="flex items-center justify-between mb-6">
+              <h2 class="text-2xl font-serif font-bold text-court-gray-900">All Case Records</h2>
+              <span class="text-sm text-court-gray-600">
+                Sorted by filing date (most recent first)
+              </span>
+            </div>
+            
+            <div class="overflow-x-auto -mx-6">
+              <div class="inline-block min-w-full align-middle px-6">
+                <table class="min-w-full divide-y divide-court-gray-200">
+                  <thead class="bg-court-gray-100">
+                    <tr>
+                      <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-court-gray-700 uppercase tracking-wider">
+                        Case Number
+                      </th>
+                      <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-court-gray-700 uppercase tracking-wider">
+                        Filing Date
+                      </th>
+                      <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-court-gray-700 uppercase tracking-wider">
+                        Court
+                      </th>
+                      <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-court-gray-700 uppercase tracking-wider">
+                        Case Type
+                      </th>
+                      <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-court-gray-700 uppercase tracking-wider">
+                        Status
+                      </th>
+                      <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-court-gray-700 uppercase tracking-wider">
+                        Party Type
+                      </th>
+                      <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-court-gray-700 uppercase tracking-wider">
+                        Case Caption
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="bg-white divide-y divide-court-gray-200">
+                    {marylandCaseSearchResults.map((caseRecord) => (
+                      <tr class="hover:bg-court-gray-50 transition-colors">
+                        <td class="px-4 py-4 text-sm font-medium text-court-gray-900 whitespace-nowrap">
+                          {caseRecord.caseNumber}
+                        </td>
+                        <td class="px-4 py-4 text-sm text-court-gray-900 whitespace-nowrap">
+                          {caseRecord.filingDate}
+                        </td>
+                        <td class="px-4 py-4 text-sm text-court-gray-900">
+                          {caseRecord.court}
+                        </td>
+                        <td class="px-4 py-4 text-sm text-court-gray-900">
+                          {caseRecord.caseType}
+                        </td>
+                        <td class="px-4 py-4 text-sm whitespace-nowrap">
+                          <span class={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
+                            caseRecord.caseStatus.includes('Open') 
+                              ? 'bg-yellow-100 text-yellow-800' 
+                              : 'bg-green-100 text-green-800'
+                          }`}>
+                            {caseRecord.caseStatus}
+                          </span>
+                        </td>
+                        <td class="px-4 py-4 text-sm text-court-gray-900 whitespace-nowrap">
+                          {caseRecord.partyType}
+                        </td>
+                        <td class="px-4 py-4 text-sm text-court-gray-900">
+                          {caseRecord.caseCaption || '—'}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <div class="mt-6 pt-6 border-t border-court-gray-200">
+              <p class="text-sm text-court-gray-600">
+                <strong>Note:</strong> This table displays all cases found in the Maryland Judiciary Case Search system 
+                for {defendant.fullName} and associated business entities. Case statuses and information are as 
+                recorded in the public court database.
+              </p>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Source Citation -->
+        <section class="mb-8">
+          <div class="card bg-court-gray-50">
+            <h3 class="text-lg font-serif font-semibold text-court-gray-900 mb-3">Source Information</h3>
+            <p class="text-court-gray-700 mb-4">
+              All case information is sourced from the Maryland Judiciary Case Search system, 
+              a publicly accessible database of court records maintained by the Maryland State Judiciary. 
+              This data was retrieved directly from the official case search website.
+            </p>
+            <a 
+              href={caseData.sourceLinks.marylandJudiciarySearch} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-flex items-center text-court-blue-600 hover:text-court-blue-800 font-medium"
+            >
+              Visit Maryland Judiciary Case Search
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </div>
+        </section>
+        
+        <!-- Navigation Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 no-print">
+          <a href="/" class="btn-secondary">
+            ← Back to Home
+          </a>
+          <a href="/small-claims" class="btn-primary">
+            View Small Claims Document →
+          </a>
+          <button 
+            onclick="window.print()" 
+            class="btn-secondary"
+          >
+            <span class="inline-flex items-center">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+              </svg>
+              Print Case Records
+            </span>
+          </button>
+        </div>
+      </div>
+    </main>
+    
+    <DisclaimerFooter />
+    <Footer />
+  </div>
+</Layout>

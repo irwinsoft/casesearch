@@ -1,0 +1,21 @@
+---
+import caseData from '../data/caseData.json';
+const { disclaimer } = caseData.sourceLinks;
+---
+
+<div class="bg-court-gray-100 border-t border-court-gray-200 py-6 mt-12">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-white border border-court-gray-300 rounded-md p-4">
+      <h3 class="text-sm font-semibold text-court-gray-900 mb-2">Important Disclaimer</h3>
+      <p class="text-xs text-court-gray-600 leading-relaxed">
+        {disclaimer}
+      </p>
+      <p class="text-xs text-court-gray-600 mt-2">
+        This website is provided for informational purposes only and does not constitute legal advice. 
+        The accuracy and completeness of information is not guaranteed. For questions about specific cases, 
+        please contact the relevant court directly.
+      </p>
+    </div>
+  </div>
+</div>
+
