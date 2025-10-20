@@ -64,7 +64,7 @@ const caseInfoRows = [
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
               <h2 class="text-2xl font-serif font-bold text-court-gray-900">Court Document</h2>
               <a 
-                href={smallClaimsSuit.pdfPath} 
+                href={`${base}${smallClaimsSuit.pdfPath.startsWith('/') ? smallClaimsSuit.pdfPath.slice(1) : smallClaimsSuit.pdfPath}`} 
                 download
                 class="inline-flex items-center px-4 py-2 bg-court-blue-600 text-white font-medium rounded-md hover:bg-court-blue-700 transition-colors text-sm"
               >
@@ -78,7 +78,7 @@ const caseInfoRows = [
             <!-- PDF Viewer with fallback -->
             <div class="bg-court-gray-100 rounded-lg overflow-hidden" style="min-height: 600px;">
               <object 
-                data={smallClaimsSuit.pdfPath} 
+                data={`${base}${smallClaimsSuit.pdfPath.startsWith('/') ? smallClaimsSuit.pdfPath.slice(1) : smallClaimsSuit.pdfPath}`} 
                 type="application/pdf" 
                 class="w-full h-full"
                 style="min-height: 800px;"
@@ -94,7 +94,7 @@ const caseInfoRows = [
                     Your browser doesn't support embedded PDF viewing. Please download the document to view it.
                   </p>
                   <a 
-                    href={smallClaimsSuit.pdfPath} 
+                    href={`${base}${smallClaimsSuit.pdfPath.startsWith('/') ? smallClaimsSuit.pdfPath.slice(1) : smallClaimsSuit.pdfPath}`} 
                     download
                     class="btn-primary"
                   >
