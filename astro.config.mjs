@@ -4,7 +4,8 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://yourdomain.com', // Update this before deployment
+  site: 'https://notthecrochunter.github.io',
+  base: '/PeterPagliaSued',
   integrations: [
     tailwind(),
     sitemap()
