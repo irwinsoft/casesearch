@@ -1,23 +1,24 @@
 ---
 // Header component
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
 ---
 
 <header class="bg-white border-b border-court-gray-200 no-print">
   <nav class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
     <div class="flex items-center justify-between">
       <div class="flex items-center">
-        <a href="/" class="text-xl font-serif font-bold text-court-gray-900 hover:text-court-blue-600 transition-colors">
+        <a href={base} class="text-xl font-serif font-bold text-court-gray-900 hover:text-court-blue-600 transition-colors">
           Public Court Records
         </a>
       </div>
       <div class="hidden sm:flex sm:space-x-8">
-        <a href="/" class="text-court-gray-600 hover:text-court-blue-600 px-3 py-2 text-sm font-medium transition-colors">
+        <a href={base} class="text-court-gray-600 hover:text-court-blue-600 px-3 py-2 text-sm font-medium transition-colors">
           Home
         </a>
-        <a href="/case-record" class="text-court-gray-600 hover:text-court-blue-600 px-3 py-2 text-sm font-medium transition-colors">
+        <a href={`${base}case-record`} class="text-court-gray-600 hover:text-court-blue-600 px-3 py-2 text-sm font-medium transition-colors">
           Case Search Results
         </a>
-        <a href="/small-claims" class="text-court-gray-600 hover:text-court-blue-600 px-3 py-2 text-sm font-medium transition-colors">
+        <a href={`${base}small-claims`} class="text-court-gray-600 hover:text-court-blue-600 px-3 py-2 text-sm font-medium transition-colors">
           Small Claims
         </a>
       </div>

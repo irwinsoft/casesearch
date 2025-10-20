@@ -9,6 +9,7 @@ import caseData from '../data/caseData.json';
 const { smallClaimsSuit, defendant } = caseData;
 const title = `Small Claims Suit - ${smallClaimsSuit.caseNumber} - ${defendant.fullName}`;
 const description = `Small claims court case ${smallClaimsSuit.caseNumber}: ${smallClaimsSuit.plaintiff} v. ${smallClaimsSuit.defendant}. View complete case documents and filing information.`;
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
 
 const caseInfoRows = [
   { label: 'Case Number', value: smallClaimsSuit.caseNumber },
@@ -30,7 +31,7 @@ const caseInfoRows = [
         <!-- Breadcrumb -->
         <nav class="mb-8 no-print" aria-label="Breadcrumb">
           <ol class="flex items-center space-x-2 text-sm text-court-gray-600">
-            <li><a href="/" class="hover:text-court-blue-600">Home</a></li>
+            <li><a href={base} class="hover:text-court-blue-600">Home</a></li>
             <li><span class="mx-2">/</span></li>
             <li class="text-court-gray-900 font-medium">Small Claims Suit</li>
           </ol>
@@ -133,10 +134,10 @@ const caseInfoRows = [
         
         <!-- Navigation Buttons -->
         <div class="flex flex-col sm:flex-row gap-4 no-print">
-          <a href="/" class="btn-secondary">
+          <a href={base} class="btn-secondary">
             ← Back to Home
           </a>
-          <a href="/case-record" class="btn-primary">
+          <a href={`${base}case-record`} class="btn-primary">
             View Maryland Case Record →
           </a>
         </div>

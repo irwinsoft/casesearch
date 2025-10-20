@@ -13,6 +13,10 @@ export default defineConfig({
   output: 'static',
   build: {
     inlineStylesheets: 'auto'
+  },
+  // Make dev server work with base path
+  server: {
+    port: 4321
   }
 });
 

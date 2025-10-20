@@ -8,6 +8,7 @@ import caseData from '../data/caseData.json';
 const { marylandCaseSearchResults, defendant } = caseData;
 const title = `Maryland Judiciary Case Search Results - ${defendant.fullName}`;
 const description = `Complete Maryland Judiciary Case Search results for ${defendant.fullName} and ${defendant.businessName}. View all court cases, filing dates, and case statuses.`;
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
 ---
 
 <Layout title={title} description={description}>
@@ -19,7 +20,7 @@ const description = `Complete Maryland Judiciary Case Search results for ${defen
         <!-- Breadcrumb -->
         <nav class="mb-8 no-print" aria-label="Breadcrumb">
           <ol class="flex items-center space-x-2 text-sm text-court-gray-600">
-            <li><a href="/" class="hover:text-court-blue-600">Home</a></li>
+            <li><a href={base} class="hover:text-court-blue-600">Home</a></li>
             <li><span class="mx-2">/</span></li>
             <li class="text-court-gray-900 font-medium">Maryland Judiciary Case Search Results</li>
           </ol>
@@ -184,10 +185,10 @@ const description = `Complete Maryland Judiciary Case Search results for ${defen
         
         <!-- Navigation Buttons -->
         <div class="flex flex-col sm:flex-row gap-4 no-print">
-          <a href="/" class="btn-secondary">
+          <a href={base} class="btn-secondary">
             ← Back to Home
           </a>
-          <a href="/small-claims" class="btn-primary">
+          <a href={`${base}small-claims`} class="btn-primary">
             View Small Claims Document →
           </a>
           <button 
