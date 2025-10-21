@@ -2,6 +2,6 @@
 User-agent: *
 Allow: /
 
-# Sitemap location (update with your actual domain)
-Sitemap: https://yourdomain.com/sitemap-index.xml
+# Sitemap location
+Sitemap: https://irwinsoft.github.io/casesearch/sitemap-index.xml
 

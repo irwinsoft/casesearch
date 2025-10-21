@@ -5,11 +5,14 @@ export interface Props {
   title: string;
   description: string;
   canonicalURL?: string;
+  keywords?: string;
 }
 
-const { title, description, canonicalURL } = Astro.props;
+const { title, description, canonicalURL, keywords } = Astro.props;
 const siteName = "Public Court Records";
 const currentURL = canonicalURL || new URL(Astro.url.pathname, Astro.site);
+const defaultKeywords = "peter paglia, atlantic woodworks, kitchen remodeling, custom cabinets, cabinetry, custom woodworking services, furniture, guitars, maryland court records, public court records, case search, glen burnie district court, anne arundel county";
+const metaKeywords = keywords || defaultKeywords;
 ---
 
 <!DOCTYPE html>
@@ -24,6 +27,7 @@ const currentURL = canonicalURL || new URL(Astro.url.pathname, Astro.site);
   <title>{title}</title>
   <meta name="title" content={title}>
   <meta name="description" content={description}>
+  <meta name="keywords" content={metaKeywords}>
   <link rel="canonical" href={currentURL}>
   
   <!-- Open Graph / Facebook -->
@@ -45,7 +49,26 @@ const currentURL = canonicalURL || new URL(Astro.url.pathname, Astro.site);
     "@type": "WebSite",
     "name": siteName,
     "url": Astro.site,
-    "description": description
+    "description": description,
+    "about": {
+      "@type": "Person",
+      "name": "Peter Paglia",
+      "alternateName": ["Peter C Paglia", "Peter Carl Paglia"],
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Atlantic Woodworks, L.L.C.",
+        "alternateName": ["Atlantic Woodworks Inc", "Atlantic Woodworks"]
+      }
+    },
+    "mainEntity": {
+      "@type": "GovernmentService",
+      "name": "Maryland Judiciary Case Search Records",
+      "serviceType": "Public Court Records",
+      "areaServed": {
+        "@type": "State",
+        "name": "Maryland"
+      }
+    }
   })} />
 </head>
 <body>
