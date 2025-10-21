@@ -94,7 +94,10 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
                         Case Number
                       </th>
                       <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-court-gray-700 uppercase tracking-wider">
-                        Filing Date
+                        Name
+                      </th>
+                      <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-court-gray-700 uppercase tracking-wider">
+                        Party Type
                       </th>
                       <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-court-gray-700 uppercase tracking-wider">
                         Court
@@ -103,10 +106,10 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
                         Case Type
                       </th>
                       <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-court-gray-700 uppercase tracking-wider">
-                        Status
+                        Case Status
                       </th>
                       <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-court-gray-700 uppercase tracking-wider">
-                        Party Type
+                        Filing Date
                       </th>
                       <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-court-gray-700 uppercase tracking-wider">
                         Case Caption
@@ -119,8 +122,11 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
                         <td class="px-4 py-4 text-sm font-medium text-court-gray-900 whitespace-nowrap">
                           {caseRecord.caseNumber}
                         </td>
+                        <td class="px-4 py-4 text-sm font-medium text-court-gray-900 whitespace-nowrap">
+                          {caseRecord.name}
+                        </td>
                         <td class="px-4 py-4 text-sm text-court-gray-900 whitespace-nowrap">
-                          {caseRecord.filingDate}
+                          {caseRecord.partyType}
                         </td>
                         <td class="px-4 py-4 text-sm text-court-gray-900">
                           {caseRecord.court}
@@ -138,7 +144,7 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
                           </span>
                         </td>
                         <td class="px-4 py-4 text-sm text-court-gray-900 whitespace-nowrap">
-                          {caseRecord.partyType}
+                          {caseRecord.filingDate}
                         </td>
                         <td class="px-4 py-4 text-sm text-court-gray-900">
                           {caseRecord.caseCaption || '—'}
