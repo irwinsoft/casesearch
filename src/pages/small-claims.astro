@@ -40,7 +40,7 @@ const caseInfoRows = [
         <!-- Case Header -->
         <div class="mb-8">
           <h1 class="text-4xl font-serif font-bold text-court-gray-900 mb-2">
-            Small Claims Court Document
+            Small Claims Complaint
           </h1>
           <p class="text-xl text-court-gray-600">
             {smallClaimsSuit.plaintiff} v. {smallClaimsSuit.defendant}
@@ -62,11 +62,11 @@ const caseInfoRows = [
         <section class="mb-12">
           <div class="card">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-              <h2 class="text-2xl font-serif font-bold text-court-gray-900">Court Document</h2>
+              <h2 class="text-2xl font-serif font-bold text-court-gray-900"> Complaint/Application and Affidavit in Support of Judgment</h2>
               <a 
                 href={`${base}${smallClaimsSuit.pdfPath.startsWith('/') ? smallClaimsSuit.pdfPath.slice(1) : smallClaimsSuit.pdfPath}`} 
                 download
-                class="inline-flex items-center px-4 py-2 bg-court-blue-600 text-white font-medium rounded-md hover:bg-court-blue-700 transition-colors text-sm"
+                class="inline-flex items-center px-4 py-2 bg-court-blue-600 text-white font-medium rounded-md hover:bg-court-blue-700 transition-colors text-sm no-print"
               >
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -75,8 +75,8 @@ const caseInfoRows = [
               </a>
             </div>
             
-            <!-- PDF Viewer with fallback -->
-            <div class="bg-court-gray-100 rounded-lg overflow-hidden" style="min-height: 600px;">
+            <!-- PDF Viewer - shows on screen -->
+            <div class="bg-court-gray-100 rounded-lg overflow-hidden screen-only" style="min-height: 600px;">
               <object 
                 data={`${base}${smallClaimsSuit.pdfPath.startsWith('/') ? smallClaimsSuit.pdfPath.slice(1) : smallClaimsSuit.pdfPath}`} 
                 type="application/pdf" 
@@ -104,7 +104,17 @@ const caseInfoRows = [
               </object>
             </div>
             
-            <p class="text-sm text-court-gray-600 mt-4">
+            <!-- PDF Pages for printing - rendered via PDF.js -->
+            <div id="pdf-print-container" class="print-only">
+              <div id="pdf-pages"></div>
+            </div>
+            
+            <!-- Loading indicator (shown only on screen while loading) -->
+            <div id="pdf-loading-indicator" class="screen-only text-center py-4 text-sm text-court-gray-500" style="display: none;">
+              Preparing document for printing...
+            </div>
+            
+            <p class="text-sm text-court-gray-600 mt-4 screen-only">
               Note: If the PDF does not display above, please use the download button to view the document on your device.
             </p>
           </div>
@@ -148,4 +158,196 @@ const caseInfoRows = [
     <Footer />
   </div>
 </Layout>
+
+<!-- Load PDF.js from CDN using script tag -->
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+<script is:inline>
+  // Configure PDF.js worker
+  if (typeof pdfjsLib !== 'undefined') {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  }
+  
+  let pdfRendered = false;
+  let renderingInProgress = false;
+  
+  async function renderPDFPages() {
+    if (pdfRendered || renderingInProgress) return;
+    
+    // Check if PDF.js is loaded
+    if (typeof pdfjsLib === 'undefined') {
+      console.error('PDF.js library not loaded');
+      alert('PDF.js library failed to load. Please check your internet connection.');
+      return;
+    }
+    
+    renderingInProgress = true;
+    const loadingIndicator = document.getElementById('pdf-loading-indicator');
+    const pagesContainer = document.getElementById('pdf-pages');
+    
+    if (!pagesContainer) {
+      console.error('PDF pages container not found');
+      renderingInProgress = false;
+      return;
+    }
+    
+    // Show loading indicator
+    if (loadingIndicator) {
+      loadingIndicator.style.display = 'block';
+    }
+    
+    try {
+      console.log('Starting PDF render with PDF.js...');
+      
+      // Get PDF path from data attribute
+      const pdfPath = document.querySelector('object')?.getAttribute('data');
+      
+      if (!pdfPath) {
+        console.error('PDF path not found');
+        return;
+      }
+      
+      console.log('PDF path:', pdfPath);
+      
+      // Load the PDF
+      const loadingTask = pdfjsLib.getDocument(pdfPath);
+      const pdf = await loadingTask.promise;
+      
+      console.log(`PDF loaded successfully: ${pdf.numPages} pages`);
+      
+      // Render each page
+      for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+        const page = await pdf.getPage(pageNum);
+        
+        // Calculate scale to fit portrait page width (8.5 inches = 816 pixels at 96 DPI)
+        const viewport = page.getViewport({ scale: 1.0 });
+        const scale = 816 / viewport.width;
+        const scaledViewport = page.getViewport({ scale: scale });
+        
+        // Create canvas for this page
+        const canvas = document.createElement('canvas');
+        canvas.className = 'pdf-page-canvas';
+        canvas.width = scaledViewport.width;
+        canvas.height = scaledViewport.height;
+        
+        const context = canvas.getContext('2d');
+        if (!context) {
+          console.error('Could not get canvas context');
+          continue;
+        }
+        
+        const renderContext = {
+          canvasContext: context,
+          viewport: scaledViewport
+        };
+        
+        await page.render(renderContext).promise;
+        
+        // Add page break after each page except the last
+        const pageWrapper = document.createElement('div');
+        pageWrapper.className = 'pdf-page-wrapper';
+        if (pageNum < pdf.numPages) {
+          pageWrapper.style.pageBreakAfter = 'always';
+        }
+        pageWrapper.appendChild(canvas);
+        pagesContainer.appendChild(pageWrapper);
+        
+        console.log(`✓ Rendered page ${pageNum}/${pdf.numPages}`);
+      }
+      
+      pdfRendered = true;
+      console.log('✓ PDF rendering complete - ready to print!');
+      
+      // Hide loading indicator
+      if (loadingIndicator) {
+        loadingIndicator.style.display = 'none';
+      }
+    } catch (error) {
+      console.error('Error rendering PDF:', error);
+      if (loadingIndicator) {
+        loadingIndicator.style.display = 'none';
+      }
+    } finally {
+      renderingInProgress = false;
+    }
+  }
+  
+  // Intercept print commands to ensure PDF is rendered
+  const originalPrint = window.print;
+  window.print = async function() {
+    const loadingIndicator = document.getElementById('pdf-loading-indicator');
+    
+    if (!pdfRendered && !renderingInProgress) {
+      console.log('Print requested, rendering PDF first...');
+      if (loadingIndicator) {
+        loadingIndicator.style.display = 'block';
+        loadingIndicator.textContent = 'Preparing document for printing, please wait...';
+      }
+      await renderPDFPages();
+      // Give a moment for the DOM to update
+      await new Promise(resolve => setTimeout(resolve, 500));
+    } else if (renderingInProgress) {
+      console.log('Print requested but rendering in progress, waiting...');
+      if (loadingIndicator) {
+        loadingIndicator.style.display = 'block';
+        loadingIndicator.textContent = 'Preparing document for printing, please wait...';
+      }
+      // Wait for rendering to complete
+      while (renderingInProgress) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+      }
+      await new Promise(resolve => setTimeout(resolve, 500));
+    }
+    
+    if (pdfRendered) {
+      console.log('Opening print dialog...');
+      originalPrint.call(window);
+    } else {
+      alert('Unable to prepare PDF for printing. Please try downloading the PDF instead.');
+    }
+  };
+  
+  // Wait for DOM to be ready, then start rendering
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Page loaded, starting PDF render...');
+      renderPDFPages();
+    });
+  } else {
+    console.log('Page loaded, starting PDF render...');
+    renderPDFPages();
+  }
+</script>
+
+<style>
+  .print-only {
+    display: none;
+  }
+  
+  .screen-only {
+    display: block;
+  }
+  
+  @media print {
+    .print-only {
+      display: block !important;
+    }
+    
+    .screen-only {
+      display: none !important;
+    }
+    
+    .pdf-page-wrapper {
+      margin: 0;
+      padding: 0;
+    }
+    
+    .pdf-page-canvas {
+      display: block;
+      width: 100% !important;
+      height: auto !important;
+      max-width: 100%;
+    }
+  }
+</style>
 

@@ -52,10 +52,111 @@
     @apply shadow-none border border-court-gray-300;
   }
   
+  /* Optimize table for printing */
+  table {
+    font-size: 7pt !important;
+    width: 100% !important;
+    page-break-inside: auto;
+  }
+  
+  table thead {
+    display: table-header-group;
+  }
+  
+  table tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+  
+  table th,
+  table td {
+    padding: 2px 4px !important;
+    font-size: 7pt !important;
+    line-height: 1.2 !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  table th {
+    font-weight: 600 !important;
+    background-color: #f3f4f6 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  /* Reduce whitespace around table container */
+  .overflow-x-auto {
+    overflow: visible !important;
+  }
+  
+  /* Adjust main content for printing */
+  main {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+  
+  /* Reduce margins on cards for printing */
+  .card {
+    padding: 0.75rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  /* Make headings more compact */
+  h1 {
+    font-size: 18pt !important;
+    margin-bottom: 0.25rem !important;
+  }
+  
+  h2 {
+    font-size: 12pt !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  /* Status badges should print with background colors */
+  .inline-flex.rounded-full {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  /* Remove link URLs in print (can be distracting) */
   a[href]:after {
-    content: " (" attr(href) ")";
-    font-size: 0.8em;
-    color: #666;
+    content: "";
+  }
+  
+  /* Compact stats grid */
+  .grid {
+    gap: 0.5rem !important;
+    page-break-after: avoid;
+  }
+  
+  /* Prevent page breaks between stats and table */
+  section {
+    page-break-before: avoid;
+  }
+  
+  /* Hide overflow containers that might cause issues */
+  .inline-block.min-w-full {
+    display: block !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  /* PDF pages print styling */
+  #pdf-print-container {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  #pdf-pages {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .pdf-page-wrapper {
+    margin: 0 !important;
+    padding: 0 !important;
+    page-break-inside: avoid;
   }
 }
 
